@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InShare - File Sharing Made Easy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    :root {
+  --main-bg-color: #edf5fe;
+  --container-width: 500px;
+}
+
+body {
+  font-family: system-ui;
+  background: var(--main-bg-color);
+  height: 80vh;
+  overflow: hidden;
+}
+
+body,
+.upload-container,
+.drop-zone {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+.upload-container,
+.drop-zone {
+  flex-direction: column;
+}
+
+.upload-container {
+  background: #ffffff;
+  border-radius: 25px;
+  box-shadow: 0px 20px 20px 0px #00000017;
+}
+
+.title {
+  font-size: large;
+}
+
+.container {
+    display: flex;
+   justify-content: center;
+   background-color: smokewhite;
+    height: 250px;
+    width: 400px;
+    align-items: center;
+    text-align: center;
+}
+
+.button {
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 40px;
+    width: 89px;
+    border-radius: 7px;
+    background: lime;
+    color: white;
+    border: 2px solid seagreen;
+    cursor: pointer;
+    font-family: sans-serif;
+}
+.link
+{
+    background-color: lightblue;
+    padding: 2px;
+    border-radius: 7px;
+}
+
+.download
+{
+    margin-left: 10px;
+    font-family: sans-serif;
+}
+@media (max-width: 600px) {
+    .link
+    {
+        font-size: 15px;
+    }
+}
+@media (max-width: 500px) {
+    .link
+    {
+        font-size: 10px;
+    }
+
+    .container {
+        display: block;
+        justify-content: center;
+    background-color: smokewhite;
+    height: 100px;
+    width: 250px;
+    align-items: center;
+    text-align: center;
+}
+
+}
+
+</style>
+<body>
+    <section class="upload-container">
+        <form action="/api/files" method="post" enctype="multipart/form-data">
+            <div class="container">
+                <div class="input">
+                <input type="file" name="myfile" required="true" class="title" id="browseBtn">
+                <button type="submit" class="button" >Upload</button>
+                </div>
+                 </div>   
+        </form>
+
+    </section>
+
+   <div class="download">
+    <h2><b>Download Link</b></h2>
+    <% if(locals.file) {%>
+        <p>Copy Link Here</p>
+        <b class="link"><%= locals.file %></b>
+        <% } %>
+   </div>
+</body>
+
+</html>
